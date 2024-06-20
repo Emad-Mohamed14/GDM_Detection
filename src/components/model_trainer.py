@@ -33,13 +33,21 @@ class ModelTrainer:
         try:
             logging.info("Split Training & Testing Input Data")
             X_train, y_train, X_test, y_test=(
-                train_array[:,1:-1],
+                train_array[:,:-1],
                 train_array[:,-1],
-                test_array[:,1:-1],
+                test_array[:,:-1],
                 test_array[:,-1]
 
             )
 
+            feature_names = ['Age', 'No_of_Pregnancy', 'Gestation_in_previous_Pregnancy', 'BMI', 'HDL',
+                             'Family_History', 'unexplained_prenetal_loss', 'Large_Child_or_Birth_Default', 'PCOS',
+                             'Sys_BP', 'Dia_BP', 'OGTT', 'Hemoglobin', 'Sedentary_Lifestyle', 'Prediabetes']
+
+            # Print the shape and features
+            print("Training data shape:", X_train.shape)
+            print("Testing data shape:", X_test.shape)
+            
             models = {
                 "Random Forest": RandomForestClassifier(),
                 "Decision Tree": DecisionTreeClassifier(),
@@ -142,7 +150,7 @@ class ModelTrainer:
 
             save_object(
                 file_path=self.model_trainer_config.trained_model_file_path,
-                obj=best_model
+                obj=(best_model, feature_names)
             )
 
             predicted = best_model.predict(X_test)

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http_equiv="X-UA-Compatible" content="ie=edge">
+    <title>GDM Detection</title>
+    <link rel="spreadsheet" href="css/style.css">
+<style>
+</style>
+</head>
+<body>
+    <div class="login">
+       <h1>Gestational Diabetes Mellitus</h1>
+   
+       <form action="{{ url_for('predict_datapoint') }}" method="POST">
+        <h1>
+            <legend>Prediction</legend>
+        </h1>
+        <div class="mb-3">
+            <label class="form-label">Age</label>
+            <input class="form-control" type="number" name="Age"
+                placeholder="Enter Age" min='0' max='100' />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">No of Pregnancy</label>
+            <input class="form-control" type="number" name="No_of_Pregnancy"
+                placeholder="Enter Number" min='0' max='20' />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Gestation in Previous Pregnancy</label>
+            <input class="form-control" type="number" name="Gestation_in_Previous_Pregnancy"
+                placeholder="Enter Number" min='0' max='20' />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">BMI</label>
+            <input class="form-control" type="number" name="BMI"
+                placeholder="Enter Number" min='0' max='1000' />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">HDL</label>
+            <input class="form-control" type="number" name="HDL"
+                placeholder="Enter HDL" min='0' max='1000' />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Family History</label>
+            <select class="form-control" name="Family_History" placeholder="Select Option" required>
+                <option class="placeholder" selected disabled value="">Select Option</option>
+                <option value=1>
+                    Yes
+                </option>
+                <option value=0>
+                    No
+                </option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">unexplained prenetal loss</label>
+            <select class="form-control" name="unexplained_prenetal_loss" placeholder="Select Option" required>
+                <option class="placeholder" selected disabled value="">Select Option</option>
+                <option value=1>
+                    Yes
+                </option>
+                <option value=0>
+                    No
+                </option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Large Child or Birth Default</label>
+            <select class="form-control" name="Large_Child_or_Birth_Default" placeholder="Select Option" required>
+                <option class="placeholder" selected disabled value="">Select Option</option>
+                <option value=1>
+                    Yes
+                </option>
+                <option value=0>
+                    No
+                </option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">PCOS</label>
+            <select class="form-control" name="PCOS" placeholder="Select Option" required>
+                <option class="placeholder" selected disabled value="">Select Option</option>
+                <option value=1>
+                    Yes
+                </option>
+                <option value=0>
+                    No
+                </option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Sys BP</label>
+            <input class="form-control" type="number" name="Sys_BP"
+                placeholder="Enter Sys" min='0' max='1000' />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Dia BP</label>
+            <input class="form-control" type="number" name="Dia_BP"
+                placeholder="Enter Dia" min='0' max='1000' />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">OGTT</label>
+            <input class="form-control" type="number" name="OGTT"
+                placeholder="Enter OGTT" min='0' max='1000' />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Hemoglobin</label>
+            <input class="form-control" type="number" name="Hemoglobin"
+                placeholder="Enter Hemoglobin" min='0' max='1000' />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Sedentary Lifestyle</label>
+            <select class="form-control" name="Sedentary_Lifestyle" placeholder="Select Option" required>
+                <option class="placeholder" selected disabled value="">Select Option</option>
+                <option value=1>
+                    Yes
+                </option>
+                <option value=0>
+                    No
+                </option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Prediabetes</label>
+            <select class="form-control" name="Prediabetes" placeholder="Select Option" required>
+                <option class="placeholder" selected disabled value="">Select Option</option>
+                <option value=1>
+                    Yes
+                </option>
+                <option value=0>
+                    No
+                </option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <input class="btn btn-primary" type="submit" value="Predict" required />
+        </div>
+    </form>
+    </div>
+    <h2>
+       Gestational Diabetes Mellitus is Present? - {{results}}
+    </h2>
+</body>
+</html>

@@ -35,26 +35,26 @@ class DataTransformation:
             num_pipeline = Pipeline(
                 steps=[
                 ("imputer",SimpleImputer(strategy="median")),
-                ("scaler",StandardScaler())
+                ("scaler",StandardScaler(with_mean=False))
                 ]
 
             )
 
-            '''cat_pipeline=Pipeline(
+            cat_pipeline=Pipeline(
                 steps=[
                     ("imputer",SimpleImputer(strategy="most_frequent")),
-                    ("one_hot_encoder",OneHotEncoder()),
-                    ("scaler",StandardScaler())
+                    #("one_hot_encoder",OneHotEncoder()),
+                    ("scaler",StandardScaler(with_mean=False))
                 ]
-            )'''
+            )
 
             #logging.info(f"Categorical Columns: {categorical_columns}")
             logging.info(f"Numerical columns: {numerical_columns}")
 
             preprocessor=ColumnTransformer(
                 [
-                ("num_pipeline",num_pipeline,numerical_columns)
-                #,("cat_pipeline",cat_pipeline,categorical_columns)
+                ("num_pipeline",num_pipeline,numerical_columns),
+                ("cat_pipeline",cat_pipeline,categorical_columns)
                 
                 ]
             )
@@ -112,3 +112,4 @@ class DataTransformation:
 
         except Exception as e:
             raise CustomException(e,sys)
+        

@@ -3,15 +3,8 @@
 import os
 import sys
 
-# Get the current directory of the script
-current_dir = os.path.dirname(os.path.abspath(__file__))
-
-# Get the root directory (two levels up)
-root_dir = os.path.abspath(os.path.join(current_dir, '../..'))
-
-print(current_dir)
-print(root_dir)
-sys.path.append(root_dir)
+#If sys isn't being recognized
+#sys.path.append(root_dir)
 
 from src.exception import CustomException
 from src.logger import logging
